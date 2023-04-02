@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: none;
 }
 
 :root {
@@ -74,7 +75,7 @@ body {
 }
 
 #controllers #w-input-field[type="text"] {
-  background-color: #1c1c1c;
+  background-color: #1c1c1c57;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -90,7 +91,7 @@ body {
 }
 
 #controllers button {
-  background-color: #1c1c1c;
+  background-color: #1c1c1c57;
   margin-top: 10px;
   border: none;
   border-radius: 8px;
@@ -99,12 +100,11 @@ body {
   font-weight: lighter;
   padding: 10px 20px;
   transition: 0.2s ease-in-out;
-  cursor: pointer;
 }
 
 #controllers button:hover {
   background-color: #4d4d4d;
-  color: #fff;
+  color: #bdbdbd;
 }
 
 #controllers button:active {
@@ -118,7 +118,6 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 222;
   width: 100%;
   text-align: center;
   color: #000;
@@ -140,7 +139,6 @@ body {
 .social-icons i {
   color: #fff;
   position: absolute;
-  z-index: 333;
   transition: all 265ms ease-out;
 }
 
@@ -171,12 +169,12 @@ body {
   border: 1px solid #fff;
   border-radius: 100%;
   display: block;
-  transition: all 265ms ease-out;
+  transition: all 140ms ease-out;
 }
 
 .social-icons a:hover:before {
   transform: scale(0);
-  transition: all 265ms ease-in;
+  transition: all 140ms ease-in;
 }
 
 .social-icons a:hover i {
@@ -184,7 +182,7 @@ body {
   -ms-transform: scale(2);
   -webkit-transform: scale(2);
   border-style: none;
-  transition: all 265ms ease-in;
+  transition: all 140ms ease-in;
 }
 
 
@@ -194,19 +192,34 @@ body {
   bottom: 20px;
   width: 100%;
   text-align: center;
-  color: #000;
-  z-index: 33;
-
+  color: #757575;
+  font-weight: 200;
+  font-family: system-ui;
+  font-size: 16px;
 }
 
 .project-title a {
-  color: white;
+  color: #757575;
   text-decoration: none;
+  transition: 0.3s ease-in-out;
 }
 
 .project-title a:hover {
-  color: #919191;
+  color: #d7d7d7;
 }
+
+
+.w-helper-text {
+  position: absolute;
+  color: #757575;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  font-weight: 200;
+  font-family: system-ui;
+  font-size: 16px;
+}
+
 
 /* PRELOADER */
 
@@ -225,18 +238,39 @@ body {
   background-color: black;
   opacity: 1;
   z-index: 22;
-  transition: opacity .3s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 #preloader.loaded {
-  animation: fadeOut 2s;
-  animation-fill-mode: forwards;
   opacity: 0;
   pointer-events: none;
 }
 
 #preloader .loading-text{
   text-align: center;
+}
+
+#preloader #w-progress-bar {
+  width: 100%;
+  height: 3px;
+  margin-top: 20px;
+  position: relative;
+  border-radius: 20px;
+  background-color: #3a3a3a;
+  max-width: 375px;
+  transition: .5s;
+}
+
+#preloader #w-progress-bar #w-progress-bar-inner {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: 20px;
+  background-color: #fff;
+  transition: .5s;
 }
 
 .hexagon {
@@ -380,3 +414,38 @@ body {
     object-fit: contain;
   }
 }
+
+
+
+#cursor {
+  position: fixed;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+
+#cursor-border {
+  --size: 50px;
+  position: fixed;
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px white;
+  pointer-events: none;
+  transition: top 0.15s ease-out, left 0.15s ease-out, width 0.15s ease-out,
+  height 0.15s ease-out, background-color 0.15s ease-out;
+  z-index: 999;
+}
+
+
+
+
+

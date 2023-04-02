@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://unpkg.com/pixi.js@7.2.3/dist/pixi.min.js"></script>
     <script src="scripts/pixi.min.js"></script>
+
   </head>
   <body>
 
@@ -17,24 +18,26 @@
 
         <div class="social-container">
           <ul class="social-icons">
-            <li><a href="https://github.com/warioddly" target="_blank" title="GitHub"><i class="icon ion-social-github"></i></a></li>
-            <li><a href="https://twitter.com/IBekeev" target="_blank" title="Twitter"><i class="icon ion-social-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/warioddly/" target="_blank" title="Linkedin"><i class="icon ion-social-linkedin"></i></a></li>
+            <li><a href="https://github.com/warioddly" data-cursor="pointer" target="_blank" title="GitHub"><i class="icon ion-social-github"></i></a></li>
+            <li><a href="https://twitter.com/IBekeev" data-cursor="pointer" target="_blank" title="Twitter"><i class="icon ion-social-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/warioddly/" data-cursor="pointer" target="_blank" title="Linkedin"><i class="icon ion-social-linkedin"></i></a></li>
           </ul>
         </div>
 
-        <h3 class="project-title">
-          <a href="https://github.com/warioddly/text-particleizer" target="_blank" title="Project In Github">TEXT PARTICLEZIER</a>
-        </h3>
+        <p class="project-title">
+          <a href="https://github.com/warioddly/text-particleizer" data-cursor="pointer" target="_blank" title="Project In Github">TEXT PARTICLEZIER</a>
+        </p>
+
+        <p class="w-helper-text">Hover over text below</p>
 
         <div id="controllers">
 
           <div class="w-field-controller">
             <label for="w-input-field"></label>
-            <input type="text" id="w-input-field" placeholder="write something" value="">
+            <input type="text" id="w-input-field"  data-cursor="pointer" placeholder="write something" value="">
           </div>
 
-          <button id="w-render-button" class="w-button" >RENDER</button>
+          <button id="w-render-button" class="w-button" data-cursor="pointer">RENDER</button>
 
         </div>
 
@@ -93,12 +96,18 @@
             </div>
           </div>
 
-          <p aria-label="Loading" class="loading-text">Loading</p>
+<!--          <p aria-label="Loading" class="loading-text">Loading</p>-->
+
+          <span id="w-progress-bar">
+<!--            <span id="w-progress-bar-inner"></span>-->
+          </span>
 
         </div>
 
     </div>
 
+    <div id="cursor"></div>
+    <div id="cursor-border"></div>
 
     <script src="scripts/main.js" type="module"></script>
 

@@ -11,9 +11,19 @@ export class TextParticleizer {
     #preloader = new Preloader();
 
 
+
+    progress = 0;
+
     constructor(options) {
 
         this.options = options;
+
+        this.progressContainer = document.createElement('div');
+        this.progressContainer.id = "w-progress-bar-inner";
+
+        const progressbar = document.getElementById("w-progress-bar");
+        progressbar.innerHTML = ""
+        progressbar.appendChild(this.progressContainer);
 
         this.canvas = document.createElement('canvas');
 
@@ -23,8 +33,8 @@ export class TextParticleizer {
         this.canvas.height = this.options.rows * this.options.particleSize;
 
         this.render(this.options.initialValue);
-    }
 
+    }
 
     async render(text) {
 
@@ -60,7 +70,6 @@ export class TextParticleizer {
 
     }
 
-
     #renderCanvas() {
 
         if (this.app) this.app.destroy(true);
@@ -69,14 +78,13 @@ export class TextParticleizer {
 
         this.content = document.getElementById("canvas-container");
 
-        this.container = new PIXI.ParticleContainer(1000000);
+        this.container = new PIXI.ParticleContainer(100000);
 
         this.content.appendChild(this.app.view);
 
         this.app.stage.addChild(this.container);
 
     }
-
 
     async #drawImage(image, callback) {
 
@@ -89,19 +97,20 @@ export class TextParticleizer {
 
     }
 
-
     #createImage(source) {
         const image = new Image();
         image.src = source;
         return image;
     }
 
-
     #renderParticles(texture) {
 
         this.#particles = [];
 
         for (let i = 0; i < this.options.cols; i++) {
+
+            this.progressContainer.style.width = `${(i / this.options.cols) * 100}%`;
+
             for (let j = 0; j < this.options.rows; j++) {
 
                 if (this.#isRenderableParticle(
@@ -122,7 +131,9 @@ export class TextParticleizer {
                     this.container.addChild(particle.sprite)
 
                 }
+
             }
+
         }
 
     }
@@ -139,7 +150,6 @@ export class TextParticleizer {
         return false;
     }
 
-
     #animate() {
 
         this.app.ticker.add(() => {
@@ -151,6 +161,5 @@ export class TextParticleizer {
         });
 
     }
-
 
 }
