@@ -118,6 +118,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 222;
   width: 100%;
   text-align: center;
   color: #000;
@@ -139,6 +140,7 @@ body {
 .social-icons i {
   color: #fff;
   position: absolute;
+  z-index: 333;
   transition: all 265ms ease-out;
 }
 
@@ -186,7 +188,25 @@ body {
 }
 
 
+.project-title {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  z-index: 33;
 
+}
+
+.project-title a {
+  color: white;
+  text-decoration: none;
+}
+
+.project-title a:hover {
+  color: #919191;
+}
 
 /* PRELOADER */
 
@@ -204,7 +224,7 @@ body {
   flex-direction: column;
   background-color: black;
   opacity: 1;
-  z-index: 9999;
+  z-index: 22;
   transition: opacity .3s ease-in-out;
 }
 
