@@ -1,27 +1,28 @@
 
 class Particle {
 
-    constructor (x, y, texture, size) {
+    constructor (x, y, texture, options) {
+
+        this.options = options;
 
         this.x = x;
         this.y = y;
 
         this.sprite = new PIXI.Sprite(new PIXI.Texture(texture));
 
-        this.sprite.texture.frame = new PIXI.Rectangle(x, y, size, size);
+        this.sprite.texture.frame = new PIXI.Rectangle(x, y, this.options.size, this.options.size);
 
         this.sprite.x = x;
         this.sprite.y = y;
 
-
         this.speedX = 0;
         this.speedY = 0;
 
+        this.radius = options.radius;
+        this.friction = options.friction;
+        this.gravity =  options.gravity;
 
-        this.radius = 60;
-        this.friction = .9;
-        this.gravity = 0.01;
-        this.maxGravity = 0.01 + Math.random() * .07;
+        this.maxGravity = options.gravity + Math.random() * options.maxGravity;
 
     }
 

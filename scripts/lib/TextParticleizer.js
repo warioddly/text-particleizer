@@ -4,40 +4,41 @@ import Preloader from "./Preloader.js";
 
 export class TextParticleizer {
 
-    particleSize = 1;
     #particles = [];
-    rows = 600;
-    cols = 800;
 
-    currentText = null;
+    #previousText = null;
 
-    preloader = new Preloader();
+    #preloader = new Preloader();
 
 
-    constructor() {
+    constructor(options) {
+
+        this.options = options;
 
         this.canvas = document.createElement('canvas');
 
         this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
 
-        this.canvas.width = this.cols * this.particleSize;
-        this.canvas.height = this.rows * this.particleSize;
+        this.canvas.width = this.options.cols * this.options.particleSize;
+        this.canvas.height = this.options.rows * this.options.particleSize;
 
-        this.render("WARIODDLY");
+        this.render(this.options.initialValue);
     }
 
 
     async render(text) {
 
-        if (this.currentText === text.toLowerCase()) return;
-        else this.currentText = text.toLowerCase();
+        if (this.#previousText === text.toLowerCase() || text.length === 0) return;
+        else this.#previousText = text.toLowerCase();
 
-        this.preloader.setLoading = true;
+        this.#preloader.setLoading = true;
 
         console.log("[+] RENDERING TEXT: " + text);
 
-
-        const fontography = new Fontography(this.cols * this.particleSize, this.rows * this.particleSize);
+        const fontography = new Fontography(
+        this.options.cols * this.options.particleSize,
+        this.options.rows * this.options.particleSize,
+        );
 
         const base64 = fontography.render(text);
 
@@ -51,7 +52,7 @@ export class TextParticleizer {
 
             this.#animate();
 
-            this.preloader.setLoading = false;
+            this.#preloader.setLoading = false;
 
             console.log("[+] RENDERED");
 
@@ -62,9 +63,7 @@ export class TextParticleizer {
 
     #renderCanvas() {
 
-        if (this.app) {
-            this.app.destroy(true);
-        }
+        if (this.app) this.app.destroy(true);
 
         this.app = new PIXI.Application( window.innerWidth, window.innerHeight, { autoresize: true, antialias: true } );
 
@@ -102,12 +101,21 @@ export class TextParticleizer {
 
         this.#particles = [];
 
-        for (let i = 0; i < this.cols; i++) {
-            for (let j = 0; j < this.rows; j++) {
+        for (let i = 0; i < this.options.cols; i++) {
+            for (let j = 0; j < this.options.rows; j++) {
 
-                if (this.#isRenderableParticle(i * this.particleSize, j * this.particleSize, this.particleSize)) {
+                if (this.#isRenderableParticle(
+                    i * this.options.particleSize,
+                    j * this.options.particleSize,
+                    this.options.particleSize
+                )) {
 
-                    const particle = new Particle(i * this.particleSize, j * this.particleSize, texture, this.particleSize )
+                    const particle = new Particle(
+                        i * this.options.particleSize,
+                        j * this.options.particleSize,
+                        texture,
+                        this.options.particle,
+                    )
 
                     this.#particles.push(particle);
 
@@ -136,9 +144,9 @@ export class TextParticleizer {
 
         this.app.ticker.add(() => {
 
-            this.mouse = this.app.renderer.events.rootPointerEvent.global;
+            const mouse = this.app.renderer.events.rootPointerEvent.global;
 
-            this.#particles.forEach(particle => particle.update(this.mouse));
+            this.#particles.forEach(particle => particle.update(mouse));
 
         });
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> WARIODDLY | Animated Particle Text</title>
 <!--    <link rel="apple-touch-icon" href="apple-touch-icon.png">-->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://unpkg.com/pixi.js@7.2.3/dist/pixi.min.js"></script>
     <script src="scripts/pixi.min.js"></script>
@@ -14,17 +15,23 @@
 
     <div id="wrapper">
 
+        <div class="social-container">
+          <ul class="social-icons">
+            <li><a href="https://github.com/warioddly" target="_blank" title="GitHub"><i class="icon ion-social-github"></i></a></li>
+            <li><a href="https://twitter.com/IBekeev" target="_blank" title="Twitter"><i class="icon ion-social-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/warioddly/" target="_blank" title="Linkedin"><i class="icon ion-social-linkedin"></i></a></li>
+          </ul>
+        </div>
+
+
         <div id="controllers">
 
           <div class="w-field-controller">
             <label for="w-input-field"></label>
-            <input type="text" id="w-input-field" placeholder="Something..." value="something">
+            <input type="text" id="w-input-field" placeholder="write something" value="">
           </div>
 
-          <button class="polymorphic-button">
-            Click me!
-          </button>
-
+          <button id="w-render-button" class="w-button" >RENDER</button>
 
         </div>
 
@@ -88,7 +95,6 @@
         </div>
 
     </div>
-
 
 
     <script src="scripts/main.js" type="module"></script>
