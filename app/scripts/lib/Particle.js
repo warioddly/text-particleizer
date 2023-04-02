@@ -1,12 +1,10 @@
 
-export default class RenderParticle {
-
+class Particle {
 
     constructor (x, y, texture, size) {
 
         this.x = x;
         this.y = y;
-
 
         this.sprite = new PIXI.Sprite(new PIXI.Texture(texture));
 
@@ -23,14 +21,9 @@ export default class RenderParticle {
         this.radius = 60;
         this.friction = .9;
         this.gravity = 0.01;
-        this.maxGravity = 0.01 + Math.random() * .05;
-
-
-        this.dirX = Math.random() - 0.5;
-        this.dirY = Math.random() - 0.5;
+        this.maxGravity = 0.01 + Math.random() * .07;
 
     }
-
 
     update(mouse) {
 
@@ -75,5 +68,11 @@ export default class RenderParticle {
 
     }
 
+    destroy() {
+        this.sprite.destroy();
+    }
 
 }
+
+
+export default Particle;
