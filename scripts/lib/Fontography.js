@@ -10,7 +10,6 @@ export default class Fontography {
     this.ctx = this.canvas.getContext('2d');
   }
 
-  // text, font, color, width, height
   render(text) {
 
     this.ctx.fillStyle = 'black';
